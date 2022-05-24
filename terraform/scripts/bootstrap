@@ -1,8 +1,8 @@
 #!/bin/env bash
 
 # Install Dependencies
-sudo yum update
-sudo yum install git
+sudo yum update -y
+sudo yum install git -y
 sudo amazon-linux-extras install docker -y
 
 # Configure Docker
