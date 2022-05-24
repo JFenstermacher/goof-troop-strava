@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+GIT_REPO="https://github.com/JFenstermacher/goof-troop-strava"
+REPO_HOME="$HOME/goof-troop-strava"
+
+if [ ! -d "$GIT_REPO" ]; then
+  git clone "$GIT_REPO" "$REPO_HOME"
+fi
+
+cd $REPO_HOME
+
+COMMITS_BEHIND=$( git rev-list --count HEAD..@{u} )
+if [ "$COMMITS_BEHIND" != "0" ]; then 
+  git pull  # Pull down latest changes
+  make up   # Docker-compose up
+fi

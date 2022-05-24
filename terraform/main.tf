@@ -6,7 +6,7 @@ terraform {
     }
     tls = {
       source  = "hashicorp/tls"
-      version = "~>3.1.0"
+      version = "3.4.0"
     }
   }
 }
@@ -105,6 +105,22 @@ resource "aws_instance" "this" {
   key_name                    = aws_key_pair.this.key_name
   iam_instance_profile        = aws_iam_instance_profile.this.name
   vpc_security_group_ids      = [aws_security_group.this.id]
+
+  provisioner "file" {
+    source      = "./scripts/deploy"
+    destination = "/home/ec2-user/deploy"
+  }
+
+  connection {
+    host        = self.public_ip
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = tls_private_key.ssh.private_key_openssh
+  }
+
+  provisioner "remote-exec" {
+    script = "./scripts/bootstrap"
+  }
 
   tags = {
     Name = var.prefix
