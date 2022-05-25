@@ -16,5 +16,6 @@ sudo mv docker-compose-$(uname -s)-$(uname -m) /usr/local/bin/docker-compose
 sudo chmod -v +x /usr/local/bin/docker-compose
 
 # Setup CI/CD
-chmod +x "$HOME/ec2-user"
-(crontab -l 2>/dev/null; echo "*/1 * * * * $HOME/deploy") | crontab -
+DEPLOY_SCRIPT="$HOME/deploy"
+chmod +x "$DEPLOY_SCRIPT"
+(crontab -l 2>/dev/null; echo "*/1 * * * * $DEPLOY_SCRIPT") | crontab -
