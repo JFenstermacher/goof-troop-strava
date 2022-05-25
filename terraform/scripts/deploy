@@ -9,8 +9,5 @@ fi
 
 cd $REPO_HOME
 
-COMMITS_BEHIND=$( git rev-list --count HEAD..@{u} )
-if [ "$COMMITS_BEHIND" != "0" ]; then 
-  git pull  # Pull down latest changes
-  make up   # Docker-compose up
-fi
+git pull  # Pull down latest changes
+make up   # Docker-compose up
