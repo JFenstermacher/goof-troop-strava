@@ -8,7 +8,7 @@ const app = express();
 const port = env.PORT ?? 8080;
 
 app.get('/', (_, response) => {
-  response.send(strava.getActivities("Hello world!"));
+  response.send(strava.getActivities("Hello World Test!"));
 });
 
 app.listen(port, () => {
