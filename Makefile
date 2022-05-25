@@ -6,3 +6,6 @@ create:
 
 destroy:
 	cd $(TERRAFORM_DIR); terraform init; terraform destroy
+
+output:
+	cd $(TERRAFORM_DIR); terraform init; terraform output
