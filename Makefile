@@ -6,3 +6,12 @@ create:
 
 destroy:
 	cd $(TERRAFORM_DIR); terraform init; terraform destroy
+
+output:
+	cd $(TERRAFORM_DIR); terraform init; terraform output
+
+up:
+	docker-compose build; docker-compose up -d
+
+down:
+	docker-compose down
